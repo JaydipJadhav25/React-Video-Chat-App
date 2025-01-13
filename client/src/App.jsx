@@ -1,22 +1,29 @@
-
 import './App.css'
+
+import { Route, Routes} from "react-router-dom"
+import Home from './pages/home'
+import Room from './pages/room'
+import { SocketProvider } from './context/SocketContext'
+import { PeerProvider } from './context/Peer'
 
 function App() {
 
 
 
+
+
   return (
     <>
-      <div className='conatiner'>
-        <div className='box'>
-          <h1>React Video Chat App</h1>
-          <input type="text" placeholder='Enter a Eamil' />
-          <input type="text" placeholder='enter romm id' />
-          <button>Connect</button>
-        </div>
-        
-      </div>
-      
+   <div>
+    <PeerProvider>
+<SocketProvider>
+<Routes>
+   <Route  path='/' element={<Home/>} />
+   <Route  path='/room/:roomid' element={<Room/>} />
+</Routes>
+</SocketProvider>
+    </PeerProvider>
+   </div>
     </>
   )
 }
